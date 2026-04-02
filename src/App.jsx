@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import GtfsRealTimeBindings from 'gtfs-realtime-bindings';
-import fetch from 'node-fetch';
+import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
 import './App.css'
 
 function App() {
