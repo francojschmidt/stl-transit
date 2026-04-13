@@ -5,20 +5,20 @@ function App() {
 
 
 
-  return (
-    <>
-      <header>
-      </header>
+    return (
+        <>
+            <header>
+            </header>
 
-      <main>
-        <div id="map">
-        </div>
-      </main>
+            <main>
+                <div id="map">
+                </div>
+            </main>
 
-      <footer>
-      </footer>
-    </>
-  )
+            <footer>
+            </footer>
+        </>
+    )
 }
 
 export default App
