@@ -57,3 +57,8 @@ async function main() {
 
 
 }
+
+// bus routes all given #FFFFFF in gtfs data
+function assignColors() {
+
+}

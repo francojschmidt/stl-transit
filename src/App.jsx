@@ -1,5 +1,6 @@
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import './App.css'
+import { MapContainer, Marker, Popup, TileLayer, Polyline } from 'react-leaflet';
+import './App.css';
+import Route from './Route.jsx';
 
 const stlPosition = [38.6274, -90.1982]
 
@@ -12,7 +13,7 @@ function App() {
 
             <main>
                 <div>
-                    <MapContainer id="map" center={stlPosition} zoom={10}>
+                    <MapContainer id="map" center={stlPosition} zoom={13}>
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -22,6 +23,7 @@ function App() {
                                 St. Louis, MO
                             </Popup>
                         </Marker>
+                        <Route />
                     </MapContainer>
                 </div>
             </main>
