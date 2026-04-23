@@ -1,0 +1,18 @@
+{
+  "agencies": [
+    {
+      "agencyKey": "metro-stl",
+      "url": "https://www.metrostlouis.org/Transit/google_transit.zip"
+    }
+  ],
+  "bufferSizeMeters": 400,
+  "coordinatePrecision": 5,
+  "outputType": "route",
+  "outputFormat": "lines-and-stops",
+  "outputPath": "gtg/geojson",
+  "overwriteExistingFiles": true,
+  "startDate": "20250301",
+  "endDate": "",
+  "verbose": true,
+  "zipOutput": false
+}
