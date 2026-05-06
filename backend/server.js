@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const fetch = require('node-fetch');
 const GtfsRealtimeBindings = require('gtfs-realtime-bindings');
 
 const app = express();
@@ -9,16 +8,21 @@ app.use(cors());
 
 const PORT = 3001;
 
-const GTFS_RT_URL = 'https://www.metrostlouis.org/RealTimeData/';
-const VEHICLE_FILE = 'StlRealTimeTrips.pb';
+const GTFS_RT_URL = 'https://www.metrostlouis.org/RealTimeData/StlRealTimeVehicles.pb';
+const VEHICLE_FILE = 'StlRealTimeVehicles.pb';
 
 app.get('/vehicles', async (req, res) => {
     try {
-        const response = await fetch(GTFS_RT_URL + VEHICLE_FILE);
+        const response = await fetch(GTFS_RT_URL);
         const buffer = await response.arrayBuffer();
 
         const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(
             new Uint8Array(buffer)
+        );
+
+        console.log(
+            'entity count: ',
+            feed.entity.length
         );
 
         const vehicles = feed.entity

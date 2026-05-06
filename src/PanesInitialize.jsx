@@ -14,6 +14,11 @@ function PanesInitialize() {
             map.createPane('stops');
             map.getPane('stops').style.zIndex = 600;
         }
+
+        if(!map.getPane('vehicles')) {
+            map.createPane('vehicles');
+            map.getPane('vehicles').style.zIndex = 800;
+        }
     }, [map]);
 
     return null;

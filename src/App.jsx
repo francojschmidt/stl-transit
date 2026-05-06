@@ -4,6 +4,8 @@ import SelectionMenu from './SelectionMenu';
 import RouteLayer from './RouteLayer';
 import StopLayer from './StopLayer';
 import PanesInitialize from './PanesInitialize';
+import MapSettings from './MapSettings';
+import VehicleLayer from './VehicleLayer';
 import { loadSelectedRouteFiles } from './loadGeoJSON';
 import './App.css';
 
@@ -45,8 +47,16 @@ function App() {
                         />
                         <RouteLayer routeData={loadedRouteData} />
                         <StopLayer routeData={loadedRouteData} />
+                        <VehicleLayer
+                            selectedRoutes={selectedRoutes}
+                            showVehicles={showVehicles}
+                        />
                     </MapContainer>
                 </div>
+                <MapSettings
+                    showVehicles={showVehicles}
+                    setShowVehicles={setShowVehicles}
+                />
                 <SelectionMenu
                     selectedRoutes={selectedRoutes}
                     setSelectedRoutes={setSelectedRoutes}
