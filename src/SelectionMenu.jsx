@@ -1,16 +1,30 @@
-import Route from './Route.jsx'
+import routesMetadata from './routesMetadata';
 
-function SelectionMenu() {
+function SelectionMenu({ selectedRoutes, setSelectedRoutes }) {
+    const toggleRoute = (routeId) => {
+        setSelectedRoutes((prev) =>
+            prev.includes(routeId)
+            ? prev.filter(id => id !== routeId)
+            : [...prev, routeId]
+        );
+    };
+
+
     return (
-        <form>
-            <div id="linkMenu">
-            </div>
-            <div id="busMenu">
-            </div>
-            <div id="vehicleMenu">
-            </div>
-        </form>
-    )
+        <div className="selection-menu">
+            <h3>Select Routes</h3>
+            {routesMetadata.map((route) => (
+                <label key={route.id}>
+                    <input
+                        type="checkbox"
+                        checked={selectedRoutes.includes(route.id)}
+                        onChange={() => toggleRoute(route.id)}
+                    />
+                    {route.name}
+                </label>
+            ))}
+        </div>
+    );
 }
 
 export default SelectionMenu
