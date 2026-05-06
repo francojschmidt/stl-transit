@@ -1,10 +1,11 @@
 const fs = require("fs");
 const path = require("path");
-
-const inputFile = path.join("../data/google_transit/", "routes.txt");
+// (NOTE: inputFile is routes.txt from GTFS schedule data)
+const inputFile = path.join("../finalproject/data/google_transit/", "routes.txt");
 const outputFile = path.join("./src/", "routesMetadata.js");
 
 // might add the real ones later idk, would have to do it by hand :(
+// (because bus routes are all #FFFFFF for stl metro)
 const colors = [
   "#1E88E5",
   "#43A047",
@@ -48,8 +49,8 @@ function generateMetadata() {
       name: `${shortName} - ${longName}`,
       color: colors[index % colors.length],
       files: [
-        `/routes/70006_${routeId}_0.geojson`,
-        `/routes/70006_${routeId}_1.geojson`
+        `routes/70006_${routeId}_0.geojson`,
+        `routes/70006_${routeId}_1.geojson`
       ]
     };
   });

@@ -14,7 +14,7 @@ function RouteLayer({ selectedRoutes }) {
             const loaded = await Promise.all(
                 selectedMetadata.flatMap(route =>
                     route.files.map(async (file) => {
-                        const res = await fetch(file);
+                        const res = await fetch(`${import.meta.env.BASE_URL}${file}`);
 
                         if(!res.ok) {
                             console.error(`Failed to load: ${file}`);
