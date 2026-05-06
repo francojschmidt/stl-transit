@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Pane } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import SelectionMenu from './SelectionMenu';
 import RouteLayer from './RouteLayer';
 import StopLayer from './StopLayer';
@@ -12,6 +12,7 @@ const stlPosition = [38.6274, -90.1982]
 function App() {
     const [selectedRoutes, setSelectedRoutes] = useState([]);
     const [loadedRouteData, setLoadedRouteData] = useState([]);
+    const [showVehicles, setShowVehicles] = useState(false);
 
     useEffect(() => {
         let cancelled = false;
