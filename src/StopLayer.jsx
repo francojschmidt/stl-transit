@@ -1,26 +1,52 @@
-import { GeoJSON, useMapEvents } from 'react-leaflet';
+import { GeoJSON, useMapEvents, useMap } from 'react-leaflet';
 import { useEffect, useState } from 'react';
 import L from 'leaflet';
 
-function StopLayer() {
+function StopLayer({ routeData }) {
     const [showStops, setShowStops] = useState(false);
     const [stopsData, setStopsData] = useState(null);
 
-    const map = useMapEvents({
+    const map = useMap();
+
+    useMapEvents({
         zoomend() {
-            const zoom = map.getZoom();
-            setShowStops(zoom >= 15);
+            setShowStops(map.getZoom() >= 15);
         }
     });
 
     useEffect(() => {
-        fetch(`${import.meta.env.BASE_URL}stops/all-stops.geojson`)
-        .then(res => res.json())
-        .then(setStopsData)
-        .catch(console.error);
-    }, []);
+        setShowStops(map.getZoom() >= 15);
+    }, [map]);
 
-    if(!showStops || !stopsData) return null;
+    useEffect(() => {
+        const stopMap = new Map();
+
+        routeData.forEach((route) => {
+            const pointFeatures = route.data.features.filter(
+                (feature) =>
+                    feature.geometry &&
+                    feature.geometry.type === 'Point'
+            );
+
+            pointFeatures.forEach((feature) => {
+                const stopId = feature.properties?.stop_id ||
+                    JSON.stringify(feature.geometry.coordinates);
+
+                if(!stopMap.has(stopId)) {
+                    stopMap.set(stopId, feature);
+                }
+            });
+        });
+
+        setStopsData({
+            type: 'FeatureCollection',
+            features: Array.from(stopMap.values())
+        });
+    }, [routeData]);
+
+    if(!showStops || !stopsData) {
+        return null;
+    }
 
     return (
         <GeoJSON
