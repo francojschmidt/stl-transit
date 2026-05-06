@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, Pane } from 'react-leaflet';
 import SelectionMenu from './SelectionMenu';
 import RouteLayer from './RouteLayer';
 import StopLayer from './StopLayer';
+import PanesInitialize from './PanesInitialize';
 import { loadSelectedRouteFiles } from './loadGeoJSON';
 import './App.css';
 
@@ -13,11 +14,19 @@ function App() {
     const [loadedRouteData, setLoadedRouteData] = useState([]);
 
     useEffect(() => {
+        let cancelled = false;
+
         async function loadData() {
             const loaded = await loadSelectedRouteFiles(selectedRoutes);
-            setLoadedRouteData(loaded);
+            if(!cancelled) {
+                setLoadedRouteData(loaded);
+            }
         }
         loadData();
+
+        return () => {
+            cancelled = true;
+        };
     }, [selectedRoutes]);
 
     return (
@@ -27,7 +36,8 @@ function App() {
 
             <main>
                 <div>
-                    <MapContainer id="map" center={stlPosition} zoom={13}>
+                    <MapContainer id="map" center={stlPosition} zoom={11} >
+                        <PanesInitialize />
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

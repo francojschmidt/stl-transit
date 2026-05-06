@@ -15,18 +15,22 @@ function StopLayer({ routeData }) {
     });
 
     useEffect(() => {
+        if(!map) return;
         setShowStops(map.getZoom() >= 15);
     }, [map]);
 
     useEffect(() => {
+        if(!routeData || routeData.length === 0) {
+            setStopsData(null);
+            return;
+        }
+
         const stopMap = new Map();
 
         routeData.forEach((route) => {
-            const pointFeatures = route.data.features.filter(
-                (feature) =>
-                    feature.geometry &&
-                    feature.geometry.type === 'Point'
-            );
+            const pointFeatures = route.data?.features?.filter(
+                (feature) => feature?.geometry?.type === 'Point'
+            ) || [];
 
             pointFeatures.forEach((feature) => {
                 const stopId = feature.properties?.stop_id ||
@@ -44,15 +48,19 @@ function StopLayer({ routeData }) {
         });
     }, [routeData]);
 
-    if(!showStops || !stopsData) {
+    if(!showStops || stopsData?.type !== 'FeatureCollection' || !stopsData?.features?.length) {
         return null;
     }
 
     return (
         <GeoJSON
             data={stopsData}
+            pane='stops'
             pointToLayer={(feature, latlng) =>
-                L.circleMarker(latlng, {radius: 4})
+                L.circleMarker(latlng, {
+                    pane: 'stops',
+                    radius: 4
+                })
             }
             onEachFeature={(feature, layer) => {
                 if(feature.properties?.stop_name) {
