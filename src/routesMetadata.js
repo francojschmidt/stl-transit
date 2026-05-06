@@ -50,8 +50,7 @@ const routesMetadata = [
     "name": "5 - Green",
     "color": "#00ACC1",
     "files": [
-      "routes/70006_19595_0.geojson",
-      "routes/70006_19595_1.geojson"
+      "routes/70006_19595_0.geojson"
     ]
   },
   {
@@ -176,8 +175,7 @@ const routesMetadata = [
     "name": "34 - Earth City",
     "color": "#00897B",
     "files": [
-      "routes/70006_19609_0.geojson",
-      "routes/70006_19609_1.geojson"
+      "routes/70006_19609_0.geojson"
     ]
   },
   {
@@ -446,8 +444,7 @@ const routesMetadata = [
     "name": "4 - 19th & Central",
     "color": "#00897B",
     "files": [
-      "routes/70006_19639_0.geojson",
-      "routes/70006_19639_1.geojson"
+      "routes/70006_19639_0.geojson"
     ]
   },
   {
@@ -455,8 +452,7 @@ const routesMetadata = [
     "name": "5 - Missouri Ave - ML King",
     "color": "#1E88E5",
     "files": [
-      "routes/70006_19640_0.geojson",
-      "routes/70006_19640_1.geojson"
+      "routes/70006_19640_0.geojson"
     ]
   },
   {

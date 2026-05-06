@@ -23,10 +23,22 @@ function RouteLayer({ selectedRoutes }) {
 
                         const data = await res.json();
 
+                        const lineFeatures = data.features.filter(
+                            feature =>
+                                feature.geometry &&
+                                (
+                                    feature.geometry.type === 'LineString' ||
+                                    feature.geometry.type === 'MultiLineString'
+                                )
+                        );
+
                         return {
                             id: `${route.id}-${file}`,
                             color: route.color,
-                            data
+                            data: {
+                                type: 'FeatureCollection',
+                                features: lineFeatures
+                            }
                         };
                     })
                 )
