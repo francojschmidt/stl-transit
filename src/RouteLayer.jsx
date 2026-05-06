@@ -12,18 +12,26 @@ function RouteLayer({ selectedRoutes }) {
             );
 
             const loaded = await Promise.all(
-                selectedMetadata.map(async (route) => {
-                    const res = await fetch(route.file);
-                    const data = await res.json();
+                selectedMetadata.flatMap(route =>
+                    route.files.map(async (file) => {
+                        const res = await fetch(file);
 
-                    return {
-                        id: `${route.id}-${file}`,
-                        color: route.color,
-                        data
-                    };
-                })
+                        if(!res.ok) {
+                            console.error(`Failed to load: ${file}`);
+                            return null;
+                        }
+
+                        const data = await res.json();
+
+                        return {
+                            id: `${route.id}-${file}`,
+                            color: route.color,
+                            data
+                        };
+                    })
+                )
             );
-            setRouteData(loaded);
+            setRouteData(loaded.filter(Boolean));
         }
 
         loadRoutes();
