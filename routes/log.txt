@@ -1,0 +1,8 @@
+Feed Version: Unknown
+GTFS-to-geoJSON Version: 3.8.5
+Date Generated: Tue Apr 28 2026 21:09:56 GMT-0500 (Central Daylight Time)
+Route Count: 62
+Shape Count: 0
+GeoJSON File Count: 189
+Output Type: route
+Source: https://www.metrostlouis.org/Transit/google_transit.zip
