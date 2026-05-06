@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { CircleMarker, Popup } from "react-leaflet";
+import { Marker, Popup } from "react-leaflet";
 import L from 'leaflet';
+import routeColors from './util/routeColors';
+import busIcon from './assets/bus-front-fill.svg'
 
 function createVehicleIcon(color, bearing = 0) {
     return L.divIcon({
@@ -12,15 +14,12 @@ function createVehicleIcon(color, bearing = 0) {
                     --vehicle-bearing: ${bearing}deg;
                 "
             >
-                <svg viewBox="0 0 24 24" class="vehicle-svg">
-                    <path d="M12 2 L22 22 L22 17 L2 22 Z"
-                        fill="var(--vehicle-color)"
-                    />
-                </svg>
+                <img src="${busIcon}" />
             </div>
         `,
         iconSize: [24, 24],
-        iconAnchor: [12, 12]
+        iconAnchor: [12, 12],
+        popupAnchor: [0, -12]
     });
 }
 
@@ -65,20 +64,19 @@ function VehicleLayer({ selectedRoutes, showVehicles }) {
     return (
         <>
             {vehicles.map(vehicle => (
-                <CircleMarker
+                <Marker
                     key={vehicle.id}
-                    center={[vehicle.latitude, vehicle.longitude]}
-                    radius={6}
+                    position={[vehicle.latitude, vehicle.longitude]}
+                    icon={createVehicleIcon(
+                        routeColors[vehicle.routeId] || '#104710',
+                        vehicle.bearing || 0
+                    )}
+                    pane='vehicles'
                 >
                     <Popup>
-                        <div>
-                            Vehicle: {vehicle.id}
-                        </div>
-                        <div>
-                            Route: {vehicle.routeId}
-                        </div>
+                        Vehicle: {vehicle.id}
                     </Popup>
-                </CircleMarker>
+                </Marker>
             ))}
         </>
     );

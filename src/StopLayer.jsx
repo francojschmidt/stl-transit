@@ -10,13 +10,13 @@ function StopLayer({ routeData }) {
 
     useMapEvents({
         zoomend() {
-            setShowStops(map.getZoom() >= 15);
+            setShowStops(map.getZoom() >= 14);
         }
     });
 
     useEffect(() => {
         if(!map) return;
-        setShowStops(map.getZoom() >= 15);
+        setShowStops(map.getZoom() >= 14);
     }, [map]);
 
     useEffect(() => {
@@ -59,7 +59,11 @@ function StopLayer({ routeData }) {
             pointToLayer={(feature, latlng) =>
                 L.circleMarker(latlng, {
                     pane: 'stops',
-                    radius: 4
+                    radius: 5,
+                    color: '#CC0033',
+                    weight: 3,
+                    fillColor: '#333399',
+                    fillOpacity: 1
                 })
             }
             onEachFeature={(feature, layer) => {

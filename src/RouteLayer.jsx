@@ -1,4 +1,5 @@
 import { GeoJSON } from 'react-leaflet';
+import routeColors from './util/routeColors';
 
 function RouteLayer({ routeData }) {
 
@@ -15,7 +16,7 @@ function RouteLayer({ routeData }) {
 
         return {
             id: route.id,
-            color: route.color,
+            color: routeColors[route.routeId] || route.color,
             data: {
                 type: 'FeatureCollection',
                 features: lineFeatures

@@ -12,12 +12,12 @@ function PanesInitialize() {
 
         if(!map.getPane('stops')) {
             map.createPane('stops');
-            map.getPane('stops').style.zIndex = 600;
+            map.getPane('stops').style.zIndex = 450;
         }
 
         if(!map.getPane('vehicles')) {
             map.createPane('vehicles');
-            map.getPane('vehicles').style.zIndex = 800;
+            map.getPane('vehicles').style.zIndex = 500;
         }
     }, [map]);
 
