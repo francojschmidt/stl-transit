@@ -17,7 +17,7 @@ function RouteLayer({ selectedRoutes }) {
                     const data = await res.json();
 
                     return {
-                        id: route.id,
+                        id: `${route.id}-${file}`,
                         color: route.color,
                         data
                     };

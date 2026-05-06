@@ -1,10 +1,14 @@
-import { MapContainer, Marker, Popup, TileLayer, Polyline } from 'react-leaflet';
+import { useState } from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import SelectionMenu from './SelectionMenu';
+import RouteLayer from './RouteLayer';
+import StopLayer from './StopLayer';
 import './App.css';
-import Route from './Route.jsx';
 
 const stlPosition = [38.6274, -90.1982]
 
 function App() {
+    const [selectedRoutes, setSelectedRoutes] = useState([]);
 
     return (
         <>
@@ -18,14 +22,13 @@ function App() {
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                         />
-                        <Marker position={stlPosition}>
-                            <Popup>
-                                St. Louis, MO
-                            </Popup>
-                        </Marker>
-                        <Route />
+                        <RouteLayer selectedRoutes={selectedRoutes} />
                     </MapContainer>
                 </div>
+                <SelectionMenu
+                    selectedRoutes={selectedRoutes}
+                    setSelectedRoutes={setSelectedRoutes}
+                />
             </main>
 
             <footer>

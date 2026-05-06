@@ -48,8 +48,8 @@ function generateMetadata() {
       name: `${shortName} - ${longName}`,
       color: colors[index % colors.length],
       files: [
-        `/src/assets/routes/70006_${routeId}_0.geojson`,
-        `/src/assets/routes/70006_${routeId}_1.geojson`
+        `/routes/70006_${routeId}_0.geojson`,
+        `/routes/70006_${routeId}_1.geojson`
       ]
     };
   });

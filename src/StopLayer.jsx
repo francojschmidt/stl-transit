@@ -1,5 +1,6 @@
 import { GeoJSON, useMapEvents } from 'react-leaflet';
 import { useEffect, useState } from 'react';
+import { L } from 'leaflet';
 
 function StopLayer() {
     const [showStops, setShowStops] = useState(false);
@@ -30,4 +31,4 @@ function StopLayer() {
     );
 }
 
-export default StopsLayer
+export default StopLayer
