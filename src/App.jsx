@@ -6,8 +6,8 @@ import StopLayer from './StopLayer';
 import PanesInitialize from './PanesInitialize';
 import MapSettings from './MapSettings';
 import VehicleLayer from './VehicleLayer';
-import { loadSelectedRouteFiles } from './loadGeoJSON';
-import './App.css';
+import { loadSelectedRouteFiles } from './util/loadGeoJSON';
+import './style/App.css';
 
 const stlPosition = [38.6274, -90.1982]
 
