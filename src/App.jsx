@@ -23,6 +23,7 @@ function App() {
                             attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                         />
                         <RouteLayer selectedRoutes={selectedRoutes} />
+                        <StopLayer />
                     </MapContainer>
                 </div>
                 <SelectionMenu

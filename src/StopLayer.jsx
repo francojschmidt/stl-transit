@@ -1,6 +1,6 @@
 import { GeoJSON, useMapEvents } from 'react-leaflet';
 import { useEffect, useState } from 'react';
-import { L } from 'leaflet';
+import L from 'leaflet';
 
 function StopLayer() {
     const [showStops, setShowStops] = useState(false);
@@ -14,9 +14,10 @@ function StopLayer() {
     });
 
     useEffect(() => {
-        fetch('src/assets/stops/all-stops.json')
+        fetch(`${import.meta.env.BASE_URL}stops/all-stops.geojson`)
         .then(res => res.json())
-        .then(setStopsData);
+        .then(setStopsData)
+        .catch(console.error);
     }, []);
 
     if(!showStops || !stopsData) return null;
@@ -27,6 +28,11 @@ function StopLayer() {
             pointToLayer={(feature, latlng) =>
                 L.circleMarker(latlng, {radius: 4})
             }
+            onEachFeature={(feature, layer) => {
+                if(feature.properties?.stop_name) {
+                    layer.bindPopup(feature.properties.stop_name);
+                }
+            }}
         />
     );
 }
