@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 // (NOTE: inputFile is routes.txt from GTFS schedule data)
 const inputFile = path.join("../finalproject/data/google_transit/", "routes.txt");
-const outputFile = path.join("./src/", "routesMetadata.js");
+const outputFile = path.join("./src/util", "routesMetadata.js");
 
 // might add the real ones later idk, would have to do it by hand :(
 // (because bus routes are all #FFFFFF for stl metro)

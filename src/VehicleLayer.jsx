@@ -3,6 +3,7 @@ import { Marker, Popup } from "react-leaflet";
 import L from 'leaflet';
 import routeColors from './util/routeColors';
 import busIcon from './assets/bus-front-fill.svg'
+import tripData from './util/tripData'
 
 function createVehicleIcon(color, bearing = 0) {
     return L.divIcon({
@@ -74,7 +75,7 @@ function VehicleLayer({ selectedRoutes, showVehicles }) {
                     pane='vehicles'
                 >
                     <Popup>
-                        Vehicle: {vehicle.id}
+                        <div>{tripData[vehicle.tripId].headsign}</div>
                     </Popup>
                 </Marker>
             ))}

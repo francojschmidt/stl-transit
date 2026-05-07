@@ -33,11 +33,9 @@ app.get('/vehicles', async (req, res) => {
                 return {
                     id: vehicle.vehicle?.id,
                     routeId: vehicle.trip?.routeId,
+                    tripId: vehicle.trip?.tripId,
                     latitude: vehicle.position?.latitude,
                     longitude: vehicle.position?.longitude,
-                    bearing: vehicle.position?.bearing,
-                    speed: vehicle.position?.speed,
-                    timestamp: vehicle.timestamp
                 };
             }).filter(vehicle => vehicle.latitude && vehicle.longitude);
 
