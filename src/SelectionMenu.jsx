@@ -1,4 +1,5 @@
 import routesMetadata from './util/routesMetadata';
+import './style/SelectionMenu.css'
 
 function SelectionMenu({ selectedRoutes, setSelectedRoutes }) {
     const toggleRoute = (routeId) => {

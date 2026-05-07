@@ -63,8 +63,9 @@ function App() {
 
                     <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
                         <MapSettings
-                                showVehicles={showVehicles}
-                                setShowVehicles={setShowVehicles}
+                            className="show-vehicles"
+                            showVehicles={showVehicles}
+                            setShowVehicles={setShowVehicles}
                         />
                         <SelectionMenu
                             selectedRoutes={selectedRoutes}

@@ -6,7 +6,9 @@ const routesMetadata = [
     "color": "#1E88E5",
     "files": [
       "routes/70006_19251B_0.geojson",
-      "routes/70006_19251B_1.geojson"
+      "routes/70006_19251B_1.geojson",
+      "routes/70006_19651B_0.geojson",
+      "routes/70006_19651B_1.geojson"
     ]
   },
   {
@@ -15,7 +17,9 @@ const routesMetadata = [
     "color": "#43A047",
     "files": [
       "routes/70006_19251R_0.geojson",
-      "routes/70006_19251R_1.geojson"
+      "routes/70006_19251R_1.geojson",
+      "routes/70006_19651R_0.geojson",
+      "routes/70006_19651R_1.geojson"
     ]
   },
   {
@@ -534,24 +538,6 @@ const routesMetadata = [
     "files": [
       "routes/70006_19649_0.geojson",
       "routes/70006_19649_1.geojson"
-    ]
-  },
-  {
-    "id": "19651B",
-    "name": "MLB - MetroLink Blue Line",
-    "color": "#1E88E5",
-    "files": [
-      "routes/70006_19651B_0.geojson",
-      "routes/70006_19651B_1.geojson"
-    ]
-  },
-  {
-    "id": "19651R",
-    "name": "MLR - MetroLink Red Line",
-    "color": "#43A047",
-    "files": [
-      "routes/70006_19651R_0.geojson",
-      "routes/70006_19651R_1.geojson"
     ]
   }
 ];

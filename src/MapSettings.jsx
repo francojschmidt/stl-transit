@@ -1,13 +1,15 @@
+import './style/MapSettings.css'
+
 function MapSettings({ showVehicles, setShowVehicles }) {
     return (
-        <label>
-            <input
-                type='checkbox'
-                checked={showVehicles}
-                onChange={(e) => setShowVehicles(e.target.checked)}
-            />
-            Show Vehicles
-        </label>
+            <label id="vehicle-toggle">
+                <input
+                    type='checkbox'
+                    checked={showVehicles}
+                    onChange={(e) => setShowVehicles(e.target.checked)}
+                />
+                Show Vehicles
+            </label>
     );
 }
 
