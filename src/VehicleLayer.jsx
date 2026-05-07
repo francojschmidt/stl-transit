@@ -37,7 +37,7 @@ function VehicleLayer({ selectedRoutes, showVehicles }) {
         async function fetchVehicles() {
             try {
                 const res = await fetch(
-                    'http://localhost:3001/vehicles'
+                    'https://final-project-francojschmidt.onrender.com/vehicles'
                 );
 
                 const data = await res.json();
