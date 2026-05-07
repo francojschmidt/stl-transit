@@ -15,6 +15,7 @@ function App() {
     const [selectedRoutes, setSelectedRoutes] = useState([]);
     const [loadedRouteData, setLoadedRouteData] = useState([]);
     const [showVehicles, setShowVehicles] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
         let cancelled = false;
@@ -34,34 +35,43 @@ function App() {
 
     return (
         <>
-            <header>
+            <header className="header">
+                <h1>STL Transit</h1>
+                <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
+                    ☰
+                </button>
             </header>
 
-            <main>
-                <div>
-                    <MapContainer id="map" center={stlPosition} zoom={11} >
-                        <PanesInitialize />
-                        <TileLayer
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+
+                <div className="layout">
+                    <main className="map">
+                        <MapContainer center={stlPosition} zoom={11} >
+                            <PanesInitialize />
+                            <TileLayer
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                            />
+                            <RouteLayer routeData={loadedRouteData} />
+                            <StopLayer routeData={loadedRouteData} />
+                            <VehicleLayer
+                                selectedRoutes={selectedRoutes}
+                                showVehicles={showVehicles}
+                            />
+                        </MapContainer>
+                    </main>
+
+                    <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+                        <MapSettings
+                                showVehicles={showVehicles}
+                                setShowVehicles={setShowVehicles}
                         />
-                        <RouteLayer routeData={loadedRouteData} />
-                        <StopLayer routeData={loadedRouteData} />
-                        <VehicleLayer
+                        <SelectionMenu
                             selectedRoutes={selectedRoutes}
-                            showVehicles={showVehicles}
+                            setSelectedRoutes={setSelectedRoutes}
                         />
-                    </MapContainer>
+                    </aside>
                 </div>
-                <MapSettings
-                    showVehicles={showVehicles}
-                    setShowVehicles={setShowVehicles}
-                />
-                <SelectionMenu
-                    selectedRoutes={selectedRoutes}
-                    setSelectedRoutes={setSelectedRoutes}
-                />
-            </main>
 
             <footer>
             </footer>
